@@ -20,6 +20,10 @@ Then open `workflow-documentation.html` in your browser for:
 - 📄 **JSON Viewer** - Examine raw workflow files with copy/download
 - 🏷️ **Intelligent Tagging** - Automatic trigger type and complexity detection
 
+You can also view the documentation online at
+[https://your-username.github.io/n8n-workflows-library/](https://your-username.github.io/n8n-workflows-library/),
+automatically published from the `gh-pages` branch.
+
 ### Features
 
 The documentation system automatically analyzes each workflow to extract:
