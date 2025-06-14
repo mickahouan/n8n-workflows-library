@@ -157,42 +157,42 @@ class WorkflowAnalyzer:
         
         # Start with trigger description
         trigger_descriptions = {
-            'Webhook': "Webhook-triggered automation that",
-            'Scheduled': "Scheduled automation that", 
-            'Complex': "Complex multi-step automation that",
+            'Webhook': "Automatisation déclenchée par webhook qui",
+            'Scheduled': "Automatisation planifiée qui",
+            'Complex': "Automatisation complexe à plusieurs étapes qui",
         }
-        desc = trigger_descriptions.get(trigger_type, "Manual workflow that")
+        desc = trigger_descriptions.get(trigger_type, "Workflow manuel qui")
         
         # Add functionality based on name and integrations
         if integrations:
             main_services = list(integrations)[:3]  # Top 3 services
             if len(main_services) == 1:
-                desc += f" integrates with {main_services[0]}"
+                desc += f" s'intègre à {main_services[0]}"
             elif len(main_services) == 2:
-                desc += f" connects {main_services[0]} and {main_services[1]}"
+                desc += f" connecte {main_services[0]} et {main_services[1]}"
             else:
-                desc += f" orchestrates {', '.join(main_services[:-1])}, and {main_services[-1]}"
+                desc += f" orchestre {', '.join(main_services[:-1])} et {main_services[-1]}"
         
         # Add workflow purpose hints from name
         name_lower = name.lower()
         if 'create' in name_lower:
-            desc += " to create new records"
+            desc += " pour créer de nouveaux enregistrements"
         elif 'update' in name_lower:
-            desc += " to update existing data"
+            desc += " pour mettre à jour des données existantes"
         elif 'sync' in name_lower:
-            desc += " to synchronize data"
+            desc += " pour synchroniser des données"
         elif 'notification' in name_lower or 'alert' in name_lower:
-            desc += " for notifications and alerts"
+            desc += " pour les notifications et alertes"
         elif 'backup' in name_lower:
-            desc += " for data backup operations"
+            desc += " pour les opérations de sauvegarde"
         elif 'monitor' in name_lower:
-            desc += " for monitoring and reporting"
+            desc += " pour la surveillance et les rapports"
         else:
-            desc += " for data processing"
+            desc += " pour le traitement de données"
         
-        desc += f". Uses {node_count} nodes"
+        desc += f". Utilise {node_count} nœuds"
         if len(integrations) > 3:
-            desc += f" and integrates with {len(integrations)} services"
+            desc += f" et s'intègre à {len(integrations)} services"
         
         desc += "."
         
@@ -254,11 +254,11 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
     js_data = js_data.replace('</script>', '<\\/script>').replace('<!--', '<\\!--')
     
     html_template = '''<!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N8N Workflow Documentation</title>
+    <title>Documentation des workflows N8N</title>
     <style>
         * {
             margin: 0;
@@ -1047,77 +1047,77 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 N8N Workflow Documentation</h1>
-            <p class="subtitle">Comprehensive analysis and documentation of automated workflows</p>
-            <p class="timestamp" id="generatedTimestamp">Generated: Loading...</p>
+            <h1>📊 Documentation des workflows N8N</h1>
+            <p class="subtitle">Analyse complète et documentation des workflows automatisés</p>
+            <p class="timestamp" id="generatedTimestamp">Généré : Chargement...</p>
         </div>
 
         <div class="controls">
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search workflows by name, description, or integration...">
+                <input type="text" id="searchInput" class="search-input" placeholder="Rechercher des workflows par nom, description ou intégration...">
                 <span class="search-icon">🔍</span>
             </div>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn active" data-filter="all">Tous</button>
                 <button class="filter-btn" data-filter="Webhook">Webhook</button>
-                <button class="filter-btn" data-filter="Scheduled">Scheduled</button>
-                <button class="filter-btn" data-filter="Manual">Manual</button>
-                <button class="filter-btn" data-filter="Complex">Complex</button>
+                <button class="filter-btn" data-filter="Scheduled">Planifié</button>
+                <button class="filter-btn" data-filter="Manual">Manuel</button>
+                <button class="filter-btn" data-filter="Complex">Complexe</button>
             </div>
-            <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+            <button class="theme-toggle" id="themeToggle">🌙 Sombre</button>
         </div>
 
         <div class="stats-dashboard">
             <div class="stat-card">
                 <div class="stat-number" id="totalWorkflows">0</div>
-                <div class="stat-label">Total Workflows</div>
+                <div class="stat-label">Workflows totaux</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="activeWorkflows">0</div>
-                <div class="stat-label">Active Workflows</div>
+                <div class="stat-label">Workflows actifs</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="inactiveWorkflows">0</div>
-                <div class="stat-label">Inactive Workflows</div>
+                <div class="stat-label">Workflows inactifs</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="totalNodes">0</div>
-                <div class="stat-label">Total Nodes</div>
+                <div class="stat-label">Nombre total de nœuds</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="uniqueIntegrations">0</div>
-                <div class="stat-label">Unique Integrations</div>
+                <div class="stat-label">Intégrations uniques</div>
             </div>
         </div>
 
         <div class="legend-section">
-            <h3 class="legend-title">Status Indicators</h3>
+            <h3 class="legend-title">Indicateurs d'état</h3>
             <div class="legend-grid">
                 <div class="legend-item">
                     <div class="status-dot status-active"></div>
-                    <span class="legend-text">Active - Workflow will execute when triggered</span>
+                    <span class="legend-text">Actif - le workflow s'exécutera lorsqu'il est déclenché</span>
                 </div>
                 <div class="legend-item">
                     <div class="status-dot status-inactive"></div>
-                    <span class="legend-text">Inactive - Workflow is disabled</span>
+                    <span class="legend-text">Inactif - le workflow est désactivé</span>
                 </div>
                 <div class="legend-item">
                     <div class="complexity-indicator complexity-low"></div>
-                    <span class="legend-text">Low Complexity (≤5 nodes)</span>
+                    <span class="legend-text">Complexité faible (≤5 nœuds)</span>
                 </div>
                 <div class="legend-item">
                     <div class="complexity-indicator complexity-medium"></div>
-                    <span class="legend-text">Medium Complexity (6-15 nodes)</span>
+                    <span class="legend-text">Complexité moyenne (6-15 nœuds)</span>
                 </div>
                 <div class="legend-item">
                     <div class="complexity-indicator complexity-high"></div>
-                    <span class="legend-text">High Complexity (16+ nodes)</span>
+                    <span class="legend-text">Complexité élevée (16+ nœuds)</span>
                 </div>
             </div>
         </div>
 
         <div class="loading" id="loadingIndicator">
-            <p>📊 Analyzing workflows...</p>
+            <p>📊 Analyse des workflows...</p>
         </div>
 
         <div class="workflow-grid" id="workflowGrid" style="display: none;">
@@ -1125,8 +1125,8 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
         </div>
 
         <div class="no-results" id="noResults" style="display: none;">
-            <h3>No workflows found</h3>
-            <p>Try adjusting your search terms or filters</p>
+            <h3>Aucun workflow trouvé</h3>
+            <p>Essayez de modifier vos termes de recherche ou vos filtres</p>
         </div>
     </div>
 
@@ -1134,15 +1134,15 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
     <div id="jsonModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Workflow JSON</h2>
+                <h2 class="modal-title" id="modalTitle">JSON du workflow</h2>
                 <button class="close-btn" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
                 <textarea class="json-viewer" id="jsonViewer" readonly></textarea>
             </div>
             <div class="modal-footer">
-                <button class="btn" id="copyJson">📋 Copy</button>
-                <button class="btn" id="downloadJson">💾 Download</button>
+                <button class="btn" id="copyJson">📋 Copier</button>
+                <button class="btn" id="downloadJson">💾 Télécharger</button>
             </div>
         </div>
     </div>
@@ -1173,8 +1173,8 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
             updateTimestamp() {
                 const timestamp = WORKFLOW_DATA.timestamp || new Date().toISOString();
                 const date = new Date(timestamp);
-                document.getElementById('generatedTimestamp').textContent = 
-                    `Generated: ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+                document.getElementById('generatedTimestamp').textContent =
+                    `Généré : ${date.toLocaleDateString()} à ${date.toLocaleTimeString()}`;
             }
 
             renderStats() {
@@ -1203,8 +1203,8 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
 
             createWorkflowCard(workflow) {
                 const statusClass = workflow.active ? 'status-active' : 'status-inactive';
-                const statusText = workflow.active ? 'Active' : 'Inactive';
-                const statusTooltip = workflow.active ? 'Active - Workflow will execute when triggered' : 'Inactive - Workflow is disabled';
+                const statusText = workflow.active ? 'Actif' : 'Inactif';
+                const statusTooltip = workflow.active ? "Actif - le workflow s'exécutera lorsqu'il est déclenché" : 'Inactif - le workflow est désactivé';
                 const complexityClass = `complexity-${workflow.complexity}`;
                 
                 const tags = workflow.tags.map(tag => 
@@ -1225,7 +1225,7 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                                         <span class="status-text">${statusText}</span>
                                     </div>
                                     <div class="workflow-stats">
-                                        <span><div class="complexity-indicator ${complexityClass}"></div>${workflow.nodeCount} nodes</span>
+                                        <span><div class="complexity-indicator ${complexityClass}"></div>${workflow.nodeCount} nœuds</span>
                                         <span>📁 ${workflow.filename}</span>
                                     </div>
                                 </div>
@@ -1237,10 +1237,10 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                         
                         <div class="workflow-details">
                             <div class="details-section">
-                                <h4 class="details-title">Integrations (${workflow.integrations.length})</h4>
+                                <h4 class="details-title">Intégrations (${workflow.integrations.length})</h4>
                                 <div class="integrations-list">
                                     ${integrations}
-                                    ${workflow.integrations.length > 5 ? `<span class="integration-tag">+${workflow.integrations.length - 5} more</span>` : ''}
+                                    ${workflow.integrations.length > 5 ? `<span class="integration-tag">+${workflow.integrations.length - 5} de plus</span>` : ''}
                                 </div>
                             </div>
                             ${workflow.tags.length > 0 ? `
@@ -1251,11 +1251,11 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                             ` : ''}
                             ${workflow.createdAt ? `
                                 <div class="details-section">
-                                    <h4 class="details-title">Metadata</h4>
+                                    <h4 class="details-title">Métadonnées</h4>
                                     <div style="font-size: 0.85rem; color: var(--text-muted);">
-                                        <p>Created: ${new Date(workflow.createdAt).toLocaleDateString()}</p>
-                                        ${workflow.updatedAt ? `<p>Updated: ${new Date(workflow.updatedAt).toLocaleDateString()}</p>` : ''}
-                                        ${workflow.versionId ? `<p>Version: ${workflow.versionId.substring(0, 8)}...</p>` : ''}
+                                        <p>Créé : ${new Date(workflow.createdAt).toLocaleDateString()}</p>
+                                        ${workflow.updatedAt ? `<p>Mis à jour : ${new Date(workflow.updatedAt).toLocaleDateString()}</p>` : ''}
+                                        ${workflow.versionId ? `<p>Version : ${workflow.versionId.substring(0, 8)}...</p>` : ''}
                                     </div>
                                 </div>
                             ` : ''}
@@ -1264,8 +1264,8 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                         <div class="workflow-footer">
                             <div class="workflow-tags">${tags}</div>
                             <div class="action-buttons">
-                                <button class="btn toggle-details">View Details</button>
-                                <button class="btn view-json" data-workflow-name="${workflow.name}" data-filename="${workflow.filename}">View File</button>
+                                <button class="btn toggle-details">Voir les détails</button>
+                                <button class="btn view-json" data-workflow-name="${workflow.name}" data-filename="${workflow.filename}">Voir le fichier</button>
                             </div>
                         </div>
                     </div>
@@ -1297,7 +1297,7 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                     if (e.target.classList.contains('toggle-details')) {
                         const card = e.target.closest('.workflow-card');
                         card.classList.toggle('expanded');
-                        e.target.textContent = card.classList.contains('expanded') ? 'Hide Details' : 'View Details';
+                        e.target.textContent = card.classList.contains('expanded') ? 'Masquer les détails' : 'Voir les détails';
                     }
 
                     if (e.target.classList.contains('view-json')) {
@@ -1360,7 +1360,7 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
                 
                 const btn = document.getElementById('copyJson');
                 const originalText = btn.textContent;
-                btn.textContent = '✅ Copied!';
+                btn.textContent = '✅ Copié !';
                 setTimeout(() => {
                     btn.textContent = originalText;
                 }, 2000);
@@ -1385,7 +1385,7 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
             toggleTheme() {
                 document.body.classList.toggle('dark-mode');
                 const isDark = document.body.classList.contains('dark-mode');
-                document.getElementById('themeToggle').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+                document.getElementById('themeToggle').textContent = isDark ? '☀️ Clair' : '🌙 Sombre';
                 localStorage.setItem('darkMode', isDark);
             }
 
@@ -1400,7 +1400,7 @@ def generate_html_documentation(data: Dict[str, Any]) -> str:
             // Load saved theme preference
             if (localStorage.getItem('darkMode') === 'true') {
                 document.body.classList.add('dark-mode');
-                document.getElementById('themeToggle').textContent = '☀️ Light';
+                document.getElementById('themeToggle').textContent = '☀️ Clair';
             }
 
             // Initialize the documentation
