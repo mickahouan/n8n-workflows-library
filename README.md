@@ -95,6 +95,10 @@ Files are organized with descriptive names indicating their functionality.
 - **Categories**: Data sync, notifications, integrations, monitoring, and more
 - **Services**: 100+ different platforms and APIs represented
 
+To import all workflows at once run following:
+
+`./import-workflows.sh`
+
 ---
 
 ## 🤝 Contribution
