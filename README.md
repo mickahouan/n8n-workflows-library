@@ -141,3 +141,7 @@ Found a useful workflow or created your own? Contributions welcome!
 ---
 
 *This automated documentation system makes it easy to discover, understand, and utilize the extensive collection of n8n workflows for your automation needs.*
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
